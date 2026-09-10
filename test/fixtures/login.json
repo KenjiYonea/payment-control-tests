@@ -1,0 +1,10 @@
+{
+    "admin":{
+        "email": "kenji.@email.com",
+        "senha": "Senha123456!"
+    },
+    "pgats":{
+        "email": "kenji.@email3.com",
+        "senha": "Senha123456!"
+    }
+}
