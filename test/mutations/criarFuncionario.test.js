@@ -120,9 +120,9 @@ describe('Mutation - Criar Funcionario', () => {
                 }
             })
 
-        expect(resposta2.status).to.equal(200)
-        expect(resposta2.body).to.have.property('errors')
-        expect(resposta2.body.errors[0].message).to.include('Desligamento não pode ser anterior à admissão.')
+        expect(resposta4.status).to.equal(200)
+        expect(resposta4.body).to.have.property('errors')
+        expect(resposta4.body.errors[0].message).to.include('Desligamento não pode ser anterior à admissão.')
     })
 
     it('Não deve criar um novo funcionario quando o CPF ja estiver cadastrado no sistema', async () => {
