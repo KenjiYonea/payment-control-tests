@@ -11,15 +11,19 @@ describe('Mutation - Criar Funcionario', () => {
             .post('/graphql')
             .send({
                 query: `mutation Login($email: String!, $senha: String!) {
-                    login(email: $email, senha: $senha) {
-                        token
-                    }
-                }`,
+                login(email: $email, senha: $senha) {
+                    token
+                }
+            }`,
                 variables: {
-                    email: "kenji.@email.com",
-                    senha: "Senha123!"
+                    email: "admin@admin.com",
+                    senha: "123456"
                 }
             })
+
+        expect(resposta.status).to.equal(200)
+        expect(resposta.body).to.not.have.property('errors')
+        expect(resposta.body.data.login).to.have.property('token')
 
         token = resposta.body.data.login.token
     })
