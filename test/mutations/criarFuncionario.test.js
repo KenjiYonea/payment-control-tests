@@ -11,15 +11,19 @@ describe('Mutation - Criar Funcionario', () => {
             .post('/graphql')
             .send({
                 query: `mutation Login($email: String!, $senha: String!) {
-                    login(email: $email, senha: $senha) {
-                        token
-                    }
-                }`,
+                login(email: $email, senha: $senha) {
+                    token
+                }
+            }`,
                 variables: {
-                    email: "kenji.@email.com",
-                    senha: "Senha123!"
+                    email: "admin@admin.com",
+                    senha: "123456"
                 }
             })
+
+        expect(resposta.status).to.equal(200)
+        expect(resposta.body).to.not.have.property('errors')
+        expect(resposta.body.data.login).to.have.property('token')
 
         token = resposta.body.data.login.token
     })
@@ -120,9 +124,9 @@ describe('Mutation - Criar Funcionario', () => {
                 }
             })
 
-        expect(resposta2.status).to.equal(200)
-        expect(resposta2.body).to.have.property('errors')
-        expect(resposta2.body.errors[0].message).to.include('Desligamento não pode ser anterior à admissão.')
+        expect(resposta4.status).to.equal(200)
+        expect(resposta4.body).to.have.property('errors')
+        expect(resposta4.body.errors[0].message).to.include('Desligamento não pode ser anterior à admissão.')
     })
 
     it('Não deve criar um novo funcionario quando o CPF ja estiver cadastrado no sistema', async () => {
